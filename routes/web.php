@@ -19,6 +19,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/restaurant/{id}', [RestaurantController::class, 'restaurantDetail'])->name('restaurant.detail'); // Restaurant detail
     Route::get('/order', [OrderController::class, 'orderPage'])->name('order.index'); // Order page
     Route::put('/order/{orderId}/update-quantity', [OrderController::class, 'updateQuantity'])->name('order.updateQuantity');
+    Route::delete('/order/{orderId}', [OrderController::class, 'delete'])->name('order.delete');
+    Route::post('/order/checkout', [OrderController::class, 'checkout'])->name('order.checkout');
     Route::get('/menu/{id}', [MenuController::class, 'menuDetail'])->name('menu.detail'); // Menu detail page
     Route::get('/profile/{id}', [ProfileController::class, 'showProfile'])->name('profile.view'); // Viewing
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update'); // Updating

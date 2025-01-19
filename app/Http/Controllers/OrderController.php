@@ -62,4 +62,34 @@ class OrderController extends Controller
 
         return redirect()->route('order.index')->with('success', 'Order quantity updated.');
     }
+
+    public function delete($orderId)
+    {
+        // Find the order by ID
+        $order = Order::findOrFail($orderId);
+
+        // Delete the order
+        $order->delete();
+
+        // Redirect back with a success message
+        return redirect()->route('order.index')->with('success', 'Order deleted successfully.');
+    }
+
+    public function checkout()
+    {
+        // Get the user's orders
+        $orders = Order::where('user_id', auth()->id())->get();
+
+        // Check if there are any orders to delete
+        if ($orders->isNotEmpty()) {
+            // Delete all orders
+            $orders->each->delete();
+
+            // Show a success message and redirect to the orders page
+            return redirect()->route('order.index')->with('success', 'Your orders have been successfully checked out.');
+        } else {
+            // If no orders exist, show an error message
+            return redirect()->route('order.index')->with('error', 'No orders found to checkout.');
+        }
+    }
 }
