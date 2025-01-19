@@ -50,11 +50,27 @@
                                     {{ __('Restaurants') }}
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('order.index') }}">
-                                    {{ __('My Orders') }}
-                                </a>
-                            </li>
+                            @if(Auth::user()->role == 'resto')
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('menu.create') }}">
+                                        {{ __('Add Menu') }}
+                                    </a>
+                                </li>
+                            @endif
+                            @if(Auth::user()->role == 'admin')
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('restaurant.create') }}">
+                                        {{ __('Add Restaurant') }}
+                                    </a>
+                                </li>
+                            @endif
+                            @if(Auth::user()->role == 'customer')
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('order.index') }}">
+                                        {{ __('My Orders') }}
+                                    </a>
+                                </li>
+                            @endif
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('aboutus') }}">
                                     {{ __('About Us') }}
@@ -79,6 +95,19 @@
                                 </li>
                             @endif
                         @else
+                            <div class="dropdown me-5 mt-1">
+                                <button class="btn dropdown-toggle" type="button" id="localeDropdown"
+                                    data-bs-toggle="dropdown" aria-expanded="false"
+                                    style="border-color: grey; padding: 4px 10px; font-size: 14px;">
+                                    {{ strtoupper(App::getLocale()) }}
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="localeDropdown">
+                                    <li><a class="dropdown-item"
+                                            href="{{ route('set-locale', ['locale' => 'en']) }}">English</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('set-locale', ['locale' => 'id']) }}">Bahasa
+                                            Indonesia</a></li>
+                                </ul>
+                            </div>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -91,7 +120,7 @@
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                             document.getElementById('logout-form').submit();">
+                                                                                                 document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 

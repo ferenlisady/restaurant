@@ -16,6 +16,15 @@
                         <p class="card-text">{{ $restaurant->description }}</p>
                         <h6>Address: {{ $restaurant->address }}</h6>
                         <a href="{{ route('restaurant.detail', $restaurant->id) }}" class="btn btn-success">View Details</a>
+
+                        @if(Auth::user()->role == 'admin')
+                            <form action="{{ route('restaurant.destroy', $restaurant->id) }}" method="POST"
+                                style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        @endif
                     </div>
                 </div>
             </div>

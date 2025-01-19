@@ -9,8 +9,9 @@ class Menu extends Model
 {
     use HasFactory;
 
-    protected $table = 'menus'; 
-    protected $guided = [];
+    protected $table = "menus";
+
+    protected $fillable = ['name', 'description', 'image', 'price'];
 
     public function restaurant()
     {

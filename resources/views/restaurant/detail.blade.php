@@ -4,8 +4,9 @@
 <div class="container">
     <div class="row mt-4">
         <div class="col-md-4">
-            <img src="{{ asset($restaurant->image) }}" alt="{{ $restaurant->name }}" class="img-fluid"
-                style="width: 100%">
+            <img src="{{ $restaurant->image ? asset($restaurant->image) : asset('assets/default.jpg') }}"
+                class="card-img-top mt-5 mb-4" style="height: 300px; width:100%; border-radius: 10px;"
+                alt="{{ $restaurant->name }}">
         </div>
 
         <div class="col-md-8 mt-4">
