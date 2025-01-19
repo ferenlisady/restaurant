@@ -30,5 +30,16 @@
             </div>
         @endforeach
     </div>
+
+    <div class="d-flex justify-content-center mb-4">
+        <span class="me-2 fw-bold">Page | </span>
+        <span class="me-2">
+            @for ($i = 1; $i <= $restaurants->lastPage(); $i++)
+                <a href="{{ $restaurants->url($i) }}"
+                    class="mx-1 {{ $i === $restaurants->currentPage() ? 'text-dark fw-bold' : 'text-muted' }}"
+                    style="text-decoration: none;">{{ $i }}</a>
+            @endfor
+        </span>
+    </div>
 </div>
 @endsection

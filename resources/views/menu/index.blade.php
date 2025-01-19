@@ -28,14 +28,16 @@
                         <h4 class="card-title">{{ $menu->name }}</h4>
                         <p class="card-text">{{ Str::limit($menu->description, 100) }}</p>
                         <h5 class="card-text">$ {{ $menu->price }}</h5>
-
                         <div class="d-flex justify-content-between">
-                            <a href="{{ route('menu.detail', $menu->id) }}" class="btn btn-success">View Details</a>
+                            <a href="{{ route('menu.detail', $menu->id) }}" class="btn btn-success">
+                                View Details</a>
 
-                            <form action="{{ route('order.add', $menu->id) }}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn btn-primary">Add to Order</button>
-                            </form>
+                            @if(Auth::user()->role == 'customer')
+                                <form action="{{ route('order.add', $menu->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-primary">Add to Order</button>
+                                </form>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -43,15 +45,17 @@
         @endforeach
     </div>
 
-    <div class="d-flex justify-content-center mb-4">
-        <span class="me-2 fw-bold">Page | </span>
-        <span class="me-2">
-            @for ($i = 1; $i <= $menus->lastPage(); $i++)
-                <a href="{{ $menus->url($i) }}"
-                    class="mx-1 {{ $i === $menus->currentPage() ? 'text-dark fw-bold' : 'text-muted' }}"
-                    style="text-decoration: none;">{{ $i }}</a>
-            @endfor
-        </span>
-    </div>
+    @if ($menus->lastPage() > 1)
+        <div class="d-flex justify-content-center mb-4">
+            <span class="me-2 fw-bold">Page | </span>
+            <span class="me-2">
+                @for ($i = 1; $i <= $menus->lastPage(); $i++)
+                    <a href="{{ $menus->url($i) }}"
+                        class="mx-1 {{ $i === $menus->currentPage() ? 'text-dark fw-bold' : 'text-muted' }}"
+                        style="text-decoration: none;">{{ $i }}</a>
+                @endfor
+            </span>
+        </div>
+    @endif
 </div>
 @endsection

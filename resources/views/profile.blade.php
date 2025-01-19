@@ -5,8 +5,8 @@
     <div class="row">
         <!-- Left Section: Profile Details -->
         <div class="col-md-4 mt-5 ps-5">
-            <img src="{{ asset('assets/default-profile.png') }}" class="img-fluid rounded-circle mb-4" style="width: 50%;"
-                alt="Profile Picture">
+            <img src="{{ asset('assets/default-profile.png') }}" class="img-fluid rounded-circle mb-4"
+                style="width: 50%;" alt="Profile Picture">
             <h4>{{ $user->name }}</h4>
             <p>{{ $user->email }}</p>
             <p>Joined on: {{ $user->created_at->format('d M Y') }}</p>

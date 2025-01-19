@@ -18,7 +18,7 @@
                     <th>Ordered At</th>
                     <th>Quantity</th>
                     <th>Total Price</th>
-                    <th>Action</th> <!-- Add a column for actions -->
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -70,15 +70,15 @@
         </form>
     @endif
     @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
-        @if (session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @endif
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
 </div>
 @endsection

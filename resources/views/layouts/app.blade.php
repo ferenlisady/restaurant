@@ -118,9 +118,8 @@
                                     <a class="dropdown-item" href="{{ route('profile.view', ['id' => Auth::user()->id]) }}">
                                         {{ __('Profile') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                                                                 document.getElementById('logout-form').submit();">
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -138,7 +137,33 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <footer class="text-white" style="background-color: #183F23; bottom: 0; height: 70px;">
+            <div class="container-fluid d-flex justify-content-center align-items-center h-100">
+                <div class="text-center py-3">
+                    <p class="mb-0">© ConnectFriend 2025 | Web Programming | Feren Lisady | 2602060911</p>
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    main {
+        flex-grow: 1;
+    }
+</style>
 
 </html>
